@@ -15,7 +15,7 @@ buildscript {
 allprojects {
     repositories {
         jcenter()
-        maven { url 'http://app.int.jumei.com:8081/nexus/content/repositories/release/' }
+        maven { url 'https://jitpack.io' }
     }
 }
 
