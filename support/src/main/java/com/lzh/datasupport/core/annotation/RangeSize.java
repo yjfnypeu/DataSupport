@@ -22,9 +22,20 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * <i><b>Rule Annotation</b></i>
+ *
+ * <p>Limit the max size for {@link CharSequence} or {@link java.util.Collection} or {@link java.util.Map}</p>
+ *
+ * @see RangeSizeSupport
+ */
 @Checker(RangeSizeSupport.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface RangeSize {
+    /**
+     * it should greater than or equal to 0.
+     * @return The max size for this field. include itself
+     */
     int value() default 0;
 }

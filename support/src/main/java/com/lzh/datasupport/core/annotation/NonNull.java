@@ -22,6 +22,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * <i><b>Rule Annotation</b></i>
+ *
+ * <p>To indicate that the field that is annotated should not be null.</p>
+ *
+ * @see NonNullSupport
+ */
 @Checker(NonNullSupport.class)
 @Mocker(NonNullSupport.class)
 @Retention(RetentionPolicy.RUNTIME)

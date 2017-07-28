@@ -22,6 +22,9 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * <i><b>Rule Annotation</b></i>
+ */
 @Checker(RequiresSupport.class)
 @Mocker(RequiresSupport.class)
 @Retention(RetentionPolicy.RUNTIME)

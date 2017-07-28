@@ -22,6 +22,13 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * <i><b>Rule Annotation</b></i>
+ *
+ * <p>Limit the range of integers</p>
+ *
+ * @see RangeIntSupport
+ */
 @Checker(RangeIntSupport.class)
 @Mocker(RangeIntSupport.class)
 @Retention(RetentionPolicy.RUNTIME)

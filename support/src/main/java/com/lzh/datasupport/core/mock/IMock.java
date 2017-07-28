@@ -20,5 +20,12 @@ import java.lang.reflect.Field;
 
 public interface IMock<T,A extends Annotation> {
 
+    /**
+     * To mock an actual data with the rule and the field.
+     * @param rule The rule
+     * @param field The field that be annotated.
+     * @return mock data
+     * @throws Exception Any Exception
+     */
     T mock(A rule, Field field) throws Exception;
 }

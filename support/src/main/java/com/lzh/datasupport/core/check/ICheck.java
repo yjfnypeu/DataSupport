@@ -20,5 +20,12 @@ import java.lang.annotation.Annotation;
 
 public interface ICheck<T, A extends Annotation> {
 
+    /**
+     * To checkout if the data is matching with rule.
+     * @param t The data
+     * @param rule The rule
+     * @return True if it successfully.
+     * @throws Exception Any Exceptions
+     */
     boolean check(T t, A rule) throws Exception;
 }
