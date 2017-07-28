@@ -38,5 +38,4 @@ public final class DataSupport {
             return null;
         }
     }
-
 }
