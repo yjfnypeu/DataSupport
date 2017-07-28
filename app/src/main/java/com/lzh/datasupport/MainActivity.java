@@ -13,6 +13,4 @@ public class MainActivity extends Activity {
         UserInfo mock = DataSupport.create().mock(UserInfo.class);
         DataSupport.create().check(mock);
     }
-
-
 }

@@ -30,6 +30,6 @@ public class RequiresSupport implements ICheck<Object, Requires>, IMock<Object, 
 
     @Override
     public Object mock(Requires rule, Field field) throws Exception {
-        return DataSupport.create().mock(field.getType());
+        return DataSupport.create().throwable(false).mock(field.getType());
     }
 }

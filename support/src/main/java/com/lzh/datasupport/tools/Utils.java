@@ -17,6 +17,7 @@ package com.lzh.datasupport.tools;
 
 import com.lzh.datasupport.core.annotation.Checker;
 import com.lzh.datasupport.core.annotation.Mocker;
+import com.lzh.datasupport.core.annotation.Requires;
 import com.lzh.datasupport.core.check.ICheck;
 import com.lzh.datasupport.core.mock.IMock;
 import com.lzh.datasupport.core.model.Mapping;
@@ -29,9 +30,10 @@ import java.util.List;
 
 class Utils {
 
+
     private final static String[] SYSTEM_PREFIX = {"java", "android", "javax", "com.android"};
 
-    static List<Mapping> parse(Class entity) {
+    static List<Mapping> parse(Class entity, ArrayList<Class> cyclic) {
         // filter system class
         String canonicalName = entity.getCanonicalName();
         for (String prefix : SYSTEM_PREFIX) {
@@ -50,6 +52,9 @@ class Utils {
                 continue;
             }
             list.add(mapping);
+            if (mapping.annotation.annotationType() == Requires.class) {
+                Cache.findOrCreateMappingList(field.getType(), cyclic);
+            }
         }
         list.addAll(Cache.findOrCreateMappingList(entity.getSuperclass()));
         return list;

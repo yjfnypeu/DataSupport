@@ -1,14 +1,14 @@
 package com.lzh.datasupport;
 
-import com.lzh.datasupport.core.annotation.NonNull;
 import com.lzh.datasupport.core.annotation.RangeInt;
 import com.lzh.datasupport.core.annotation.RangeSize;
+import com.lzh.datasupport.core.annotation.Requires;
 
 /**
  * Created by haoge on 2017/7/27.
  */
 
-public class UserInfo extends Info{
+public class UserInfo{
 
     @RangeInt(min = 0, max = 100)
     int age;
@@ -16,6 +16,6 @@ public class UserInfo extends Info{
     @RangeSize
     String username;
 
-    @NonNull
-    UserInfo info;
+    @Requires
+    Info info;
 }
