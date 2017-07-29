@@ -78,7 +78,7 @@ public final class Cache {
     public static ICheck[] findOrCreateChecker(Class[] arr) {
         ICheck[] checks = new ICheck[arr == null ? 0 : arr.length];
         for (int i = 0; i < checks.length; i++) {
-            checks[i] = (ICheck) findOrCreateChecker(arr[i]);
+            checks[i] = findOrCreateChecker(arr[i]);
         }
         return checks;
     }

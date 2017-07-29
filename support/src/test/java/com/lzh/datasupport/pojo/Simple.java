@@ -4,6 +4,7 @@ import com.lzh.datasupport.core.annotation.Mocker;
 import com.lzh.datasupport.core.annotation.NonNull;
 import com.lzh.datasupport.core.annotation.RangeInt;
 import com.lzh.datasupport.core.annotation.RangeSize;
+import com.lzh.datasupport.mocker.ChineseName;
 import com.lzh.datasupport.mocker.NameMocker;
 
 public class Simple {
@@ -15,7 +16,7 @@ public class Simple {
     @RangeSize(3)
     public String name;
 
-    @NonNull
+    @ChineseName
     public String names;
 
     @Override
