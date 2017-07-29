@@ -30,13 +30,16 @@ public class RangeIntSupport implements ICheck<Integer, RangeInt>, IMock<Integer
     public Integer mock(RangeInt rule, Field field) throws Exception {
         int min = rule.min();
         int max = rule.max();
-        return random.nextInt(max) - min;
+        if (min > max) {
+            throw new RuntimeException(String.format("Illegal values: min is %s, and max is %s", min, max));
+        }
+        return random.nextInt(max - min + 1) + min;
     }
 
     @Override
     public boolean check(Integer integer, RangeInt rule) throws Exception {
         int min = rule.min();
         int max = rule.max();
-        return integer != null && integer > min && integer < max;
+        return integer != null && integer >= min && integer <= max;
     }
 }

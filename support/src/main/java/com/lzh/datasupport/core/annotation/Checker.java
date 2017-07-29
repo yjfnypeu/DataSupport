@@ -25,7 +25,7 @@ import java.lang.annotation.Target;
 /**
  * <p>
  */
-@Target(ElementType.ANNOTATION_TYPE)
+@Target({ElementType.ANNOTATION_TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Checker {
     Class<? extends ICheck>[] value();

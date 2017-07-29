@@ -20,5 +20,6 @@ android {
 }
 
 dependencies {
-    compile project(':support')
+//    compile project(':support')
+    compile 'com.github.yjfnypeu:DataSupport:0.1'
 }

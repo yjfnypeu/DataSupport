@@ -20,6 +20,7 @@ import com.lzh.datasupport.core.mock.IMock;
 import com.lzh.datasupport.core.model.Mapping;
 
 import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -31,7 +32,7 @@ import java.util.Map;
  */
 public final class Cache {
 
-    private final static List<Mapping> EMPTY = new ArrayList<>();
+    private final static List EMPTY = Collections.EMPTY_LIST;
     private final static Map<Class, List<Mapping>> RULES_MAPPING = new HashMap<>();
     private final static Map<Class, IMock> MOCKS = new HashMap<>();
     private final static Map<Class, ICheck> CHECKS = new HashMap<>();
@@ -44,6 +45,7 @@ public final class Cache {
         cyclic.add(entity);
         List<Mapping> list = RULES_MAPPING.get(entity);
         if (list == null) {
+            //noinspection unchecked
             RULES_MAPPING.put(entity, EMPTY);
             list = Utils.parse(entity, cyclic);
             RULES_MAPPING.put(entity, list);

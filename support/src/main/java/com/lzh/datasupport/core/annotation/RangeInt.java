@@ -34,6 +34,6 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface RangeInt {
-    int min() default Integer.MIN_VALUE;
-    int max() default Integer.MAX_VALUE;
+    int min() default 50;
+    int max() default 100;
 }

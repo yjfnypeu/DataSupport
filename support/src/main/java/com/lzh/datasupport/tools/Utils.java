@@ -66,6 +66,7 @@ class Utils {
             Class<? extends Annotation> type = annotation.annotationType();
             Mapping mapping = new Mapping();
             mapping.field = field;
+            mapping.field.setAccessible(true);
             mapping.annotation = annotation;
             boolean valid = false;
             if (type.isAnnotationPresent(Mocker.class)) {
@@ -82,6 +83,14 @@ class Utils {
             }
 
             if (valid) {
+                Checker checker = field.getAnnotation(Checker.class);
+                Mocker mocker = field.getAnnotation(Mocker.class);
+                if (checker != null) {
+                    mapping.checks = Cache.findOrCreateChecker(checker.value());
+                }
+                if (mocker != null) {
+                    mapping.mock = Cache.findOrCreateMocker(mocker.value());
+                }
                 return mapping;
             }
         }
