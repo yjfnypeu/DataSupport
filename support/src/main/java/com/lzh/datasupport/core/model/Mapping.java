@@ -21,6 +21,9 @@ import com.lzh.datasupport.core.mock.IMock;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
+/**
+ * internal api.
+ */
 public class Mapping {
     public IMock mock;
     public ICheck[] checks;

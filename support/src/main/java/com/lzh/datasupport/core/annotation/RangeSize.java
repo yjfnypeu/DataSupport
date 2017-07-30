@@ -27,6 +27,11 @@ import java.lang.annotation.Target;
  *
  * <p>Limit the max size for {@link CharSequence} or {@link java.util.Collection} or {@link java.util.Map}</p>
  *
+ * <ul>
+ *     <li>checker: {@link RangeSizeSupport}</li>
+ *     <li>mocker: it not supported. you can define it via {@link Mocker} in your mock logic</li>
+ * </ul>
+ *
  * @see RangeSizeSupport
  */
 @Checker(RangeSizeSupport.class)

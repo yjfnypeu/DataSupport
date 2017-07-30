@@ -23,10 +23,21 @@ import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
 /**
+ * <p>This annotation is used for set the checker for <i><b>Rule Annotation</b></i>
+ *
  * <p>
+ *     The scope of this annotation is to a Rule Annotations or to the field that be annotated by a Rule Annotation.
+ *     When it be annotated by a Rule Annotation. it means that the Rule Annotation will use the checker that you defined.
+ *     Otherwise. When it be annotated by a field that is annotated by a Rule Annotation.
+ *     it means that the old checker be defined by the Rule Annotation will be replaced to the new checker you defined
+ * </p>
+ *
  */
 @Target({ElementType.ANNOTATION_TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Checker {
+    /**
+     * @return The checker arrays. it will be trigger one by one
+     */
     Class<? extends ICheck>[] value();
 }

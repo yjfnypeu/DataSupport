@@ -27,6 +27,11 @@ import java.lang.annotation.Target;
  *
  * <p>Limit the range of integers</p>
  *
+ * <ul>
+ *     <li>checker: {@link RangeIntSupport}</li>
+ *     <li>mock: {@link RangeIntSupport}</li>
+ * </ul>
+ *
  * @see RangeIntSupport
  */
 @Checker(RangeIntSupport.class)
@@ -34,6 +39,13 @@ import java.lang.annotation.Target;
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface RangeInt {
-    int min() default 50;
-    int max() default 100;
+    /**
+     * @return The min value.
+     */
+    int min();
+
+    /**
+     * @return The max value.
+     */
+    int max();
 }

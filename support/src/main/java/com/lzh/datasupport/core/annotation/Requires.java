@@ -24,6 +24,13 @@ import java.lang.annotation.Target;
 
 /**
  * <i><b>Rule Annotation</b></i>
+ *
+ * <p>Requires that the field should be mock or check used with its own rules.
+ *
+ * <ul>
+ *     <li>checker: {@link RequiresSupport}</li>
+ *     <li>mocker : {@link RequiresSupport}</li>
+ * </ul>
  */
 @Checker(RequiresSupport.class)
 @Mocker(RequiresSupport.class)

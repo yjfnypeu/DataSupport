@@ -17,7 +17,6 @@ package com.lzh.datasupport.core.check;
 
 import java.lang.annotation.Annotation;
 
-
 public interface ICheck<T, A extends Annotation> {
 
     /**

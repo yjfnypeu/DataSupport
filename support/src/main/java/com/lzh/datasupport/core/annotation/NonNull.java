@@ -27,6 +27,11 @@ import java.lang.annotation.Target;
  *
  * <p>To indicate that the field that is annotated should not be null.</p>
  *
+ * <ul>
+ *     <li>checker: {@link NonNullSupport}</li>
+ *     <li>mocker: {@link NonNullSupport}</li>
+ * </ul>
+ *
  * @see NonNullSupport
  */
 @Checker(NonNullSupport.class)

@@ -22,8 +22,21 @@ import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
 
+/**
+ * <p>This annotation is used for set the checker class for <i><b>Rule Annotation</b></i>
+ *
+ * <p>
+ *     The scope of this annotation is to a Rule Annotations or to the field that be annotated by a Rule Annotation.
+ *     When it be annotated by a Rule Annotation. it means that the Rule Annotation will use the Mocker that you defined.
+ *     Otherwise. When it be annotated by a field that is annotated by a Rule Annotation.
+ *     it means that the old Mocker be defined by the Rule Annotation will be replaced to the new Mocker you defined
+ * </p>
+ */
 @Target({ElementType.ANNOTATION_TYPE, ElementType.FIELD})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mocker {
+    /**
+     * @return The mocker data.
+     */
     Class<? extends IMock> value();
 }
