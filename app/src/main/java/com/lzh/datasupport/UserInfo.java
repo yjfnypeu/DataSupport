@@ -16,6 +16,14 @@ public class UserInfo{
     @RangeSize
     String username;
 
-    @Requires
     Info info;
+
+    @Override
+    public String toString() {
+        return "UserInfo{" +
+                "age=" + age +
+                ", username='" + username + '\'' +
+                ", info=" + info +
+                '}';
+    }
 }

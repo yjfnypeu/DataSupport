@@ -11,6 +11,7 @@ public class MainActivity extends Activity {
         setContentView(R.layout.activity_main);
 
         UserInfo mock = DataSupport.create().mock(UserInfo.class);
-        DataSupport.create().check(mock);
+        System.out.println("mock data:" + mock);
+        System.out.println("check mock data:" + DataSupport.create().check(mock));
     }
 }
