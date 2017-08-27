@@ -15,6 +15,8 @@
  */
 package com.lzh.datasupport.tools;
 
+import android.util.Log;
+
 import com.lzh.datasupport.core.annotation.Checker;
 import com.lzh.datasupport.core.annotation.Mocker;
 import com.lzh.datasupport.core.annotation.Requires;
@@ -27,10 +29,11 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
+import java.util.Objects;
 
-class Utils {
+public class Utils {
 
-
+    private static boolean inAndroid;
     private final static String[] SYSTEM_PREFIX = {"java", "android", "javax", "com.android"};
 
     static List<Mapping> parse(Class entity, ArrayList<Class> cyclic) {
@@ -105,4 +108,26 @@ class Utils {
         return false;
     }
 
+    public static void logException(Throwable e) {
+        StringBuilder builder = new StringBuilder();
+        while (e != null) {
+            builder.append(e.getMessage()).append("\r\n");
+            e = e.getCause();
+        }
+
+        if (inAndroid) {
+            Log.e("DataSupport", builder.toString());
+        } else {
+            System.err.println(builder.toString());
+        }
+    }
+
+    static {
+        try {
+            Class.forName("android.app.Activity");
+            inAndroid = true;
+        } catch (ClassNotFoundException e) {
+            inAndroid = false;
+        }
+    }
 }

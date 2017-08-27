@@ -25,11 +25,11 @@ import java.lang.reflect.Field;
 public class RequiresSupport implements ICheck<Object, Requires>, IMock<Object, Requires>{
     @Override
     public boolean check(Object o, Requires rule) throws Exception {
-        return DataSupport.create().throwable(false).check(o);
+        return DataSupport.create().throwable(true).check(o);
     }
 
     @Override
     public Object mock(Requires rule, Field field) throws Exception {
-        return DataSupport.create().throwable(false).mock(field.getType());
+        return DataSupport.create().throwable(true).mock(field.getType());
     }
 }

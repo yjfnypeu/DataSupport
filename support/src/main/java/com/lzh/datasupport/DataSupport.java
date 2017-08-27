@@ -15,13 +15,16 @@
  */
 package com.lzh.datasupport;
 
+import com.lzh.datasupport.tools.Utils;
+
 /**
  * The entry class of DataSupport
  * Created by haoge on 2017/7/27.
  */
 public final class DataSupport {
 
-    private boolean throwable = true;
+
+    private boolean throwable = false;
     private DataSupport() {}
     public static DataSupport create() {
         return new DataSupport();
@@ -49,6 +52,7 @@ public final class DataSupport {
             if (throwable) {
                 throw new RuntimeException("DataSupport checked failed", e);
             }
+            Utils.logException(e);
             return false;
         }
     }
@@ -66,8 +70,10 @@ public final class DataSupport {
             if (throwable) {
                 throw new RuntimeException("DataSupport mocked failed", e);
             }
+            Utils.logException(e);
             return null;
         }
     }
+
 
 }

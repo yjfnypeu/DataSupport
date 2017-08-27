@@ -7,4 +7,18 @@
     android:orientation="vertical"
     tools:context="com.lzh.datasupport.MainActivity">
 
+    <Button
+        android:id="@+id/mock_info"
+        android:text="模拟用户信息"
+        android:onClick="onMockInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <Button
+        android:id="@+id/check_info"
+        android:text="检查用户信息是否有效"
+        android:onClick="onCheckInfo"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

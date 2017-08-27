@@ -16,9 +16,11 @@
 package com.lzh.datasupport;
 
 import com.lzh.datasupport.core.check.ICheck;
+import com.lzh.datasupport.core.exception.CheckerException;
 import com.lzh.datasupport.core.model.Mapping;
 import com.lzh.datasupport.tools.Cache;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 final class DataChecker {
@@ -38,11 +40,12 @@ final class DataChecker {
                 }
                 Object value = mapping.field.get(entity);
                 if (!check.check(value, mapping.annotation)) {
-                    return false;
+                    String msg = String.format("Check failed by checker: [%s] with values: [%s] and rule annotation: [%s]",
+                            check.getClass().getCanonicalName(), value, mapping.annotation.getClass().getCanonicalName());
+                    throw new CheckerException(msg, entity, value, mapping.annotation);
                 }
             }
         }
         return true;
     }
-
 }
