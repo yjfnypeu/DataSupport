@@ -40,8 +40,8 @@ final class DataChecker {
                 }
                 Object value = mapping.field.get(entity);
                 if (!check.check(value, mapping.annotation)) {
-                    String msg = String.format("Check failed by checker: [%s] with values: [%s] and rule annotation: [%s]",
-                            check.getClass().getCanonicalName(), value, mapping.annotation.getClass().getCanonicalName());
+                    String msg = String.format("Check for filed [%s] failed by Checker [%s]. and it value is [%s]",
+                            mapping.field, check.getClass().getCanonicalName(), value);
                     throw new CheckerException(msg, entity, value, mapping.annotation);
                 }
             }
