@@ -35,13 +35,9 @@ class Utils {
 
     static List<Mapping> parse(Class entity, ArrayList<Class> cyclic) {
         // filter system class
-        String canonicalName = entity.getCanonicalName();
-        for (String prefix : SYSTEM_PREFIX) {
-            if (canonicalName.startsWith(prefix)) {
-                // if it matched, back an empty list.
-                //noinspection unchecked
-                return Collections.EMPTY_LIST;
-            }
+        if (isSystemClass(entity)) {
+            //noinspection unchecked
+            return Collections.EMPTY_LIST;
         }
 
         List<Mapping> list = new ArrayList<>();
@@ -56,7 +52,9 @@ class Utils {
                 Cache.findOrCreateMappingList(field.getType(), cyclic);
             }
         }
-        list.addAll(Cache.findOrCreateMappingList(entity.getSuperclass()));
+        if (!isSystemClass(entity.getSuperclass())) {
+            list.addAll(Cache.findOrCreateMappingList(entity.getSuperclass()));
+        }
         return list;
     }
 
@@ -97,5 +95,14 @@ class Utils {
         return null;
     }
 
+    private static boolean isSystemClass(Class clz) {
+        String canonicalName = clz.getCanonicalName();
+        for (String prefix : SYSTEM_PREFIX) {
+            if (canonicalName.startsWith(prefix)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
 }

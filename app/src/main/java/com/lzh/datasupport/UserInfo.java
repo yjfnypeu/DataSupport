@@ -16,6 +16,7 @@ public class UserInfo{
     @RangeSize
     String username;
 
+    @Requires
     Info info;
 
     @Override
