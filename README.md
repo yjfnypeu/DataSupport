@@ -39,4 +39,4 @@ QQ group:108895031
 
 ## License
 
-[Apache v2.0](./LICENSE)
+[Apache v2.0](./LICENCE)
