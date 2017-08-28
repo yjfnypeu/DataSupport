@@ -5,6 +5,8 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.lzh.datasupport.pojo.UserInfo;
+
 public class MainActivity extends Activity {
 
     private UserInfo info;
@@ -13,9 +15,6 @@ public class MainActivity extends Activity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        UserInfo mock = DataSupport.create().mock(UserInfo.class);
-        System.out.println("mock data:" + mock);
-        System.out.println("check mock data:" + DataSupport.create().check(mock));
     }
 
     public void onMockInfo(View view) {
