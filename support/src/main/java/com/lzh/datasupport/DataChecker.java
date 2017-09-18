@@ -20,12 +20,16 @@ import com.lzh.datasupport.core.exception.CheckerException;
 import com.lzh.datasupport.core.model.Mapping;
 import com.lzh.datasupport.tools.Cache;
 
-import java.lang.annotation.Annotation;
 import java.util.List;
 
 final class DataChecker {
 
+    private static boolean ENABLE = true;
+
     static boolean check(Object data) throws Exception{
+        if (!ENABLE) {
+            return true;
+        }
         List<Mapping> mappings = Cache.findOrCreateMappingList(data.getClass());
         return checkInternal(data, mappings);
     }
@@ -47,5 +51,13 @@ final class DataChecker {
             }
         }
         return true;
+    }
+
+    /**
+     * Whether or not to enable the checker. if not enabled, the check result should always returns true.
+     * @param enable True to enable
+     */
+    public static void enable(boolean enable) {
+        ENABLE = enable;
     }
 }

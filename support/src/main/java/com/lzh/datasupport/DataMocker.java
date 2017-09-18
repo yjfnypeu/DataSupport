@@ -22,7 +22,12 @@ import java.util.List;
 
 final class DataMocker {
 
+    private static boolean ENABLE = true;
+
     public static <T> T mock(Class<T> clz) throws Exception{
+        if (!ENABLE) {
+            return null;
+        }
         List<Mapping> mappings = Cache.findOrCreateMappingList(clz);
         return mockInternal(clz, mappings);
     }
@@ -41,5 +46,11 @@ final class DataMocker {
         return mock;
     }
 
-
+    /**
+     * Whether or not to enable the mocker. if not enabled, the mock result should always returns null.
+     * @param enable True for enable
+     */
+    public static void enable(boolean enable) {
+        ENABLE = enable;
+    }
 }
