@@ -38,7 +38,6 @@ import java.util.Map;
  *             3. {@link List}判断其{@link List#size()}
  *         </li>
  *     </ul>
- * </p>
  *
  * @see NonNullSupport
  */

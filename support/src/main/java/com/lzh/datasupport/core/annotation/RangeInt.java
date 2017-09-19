@@ -37,7 +37,6 @@ import java.lang.reflect.Field;
  *             检查器：检查int数据值是否在[min, max]之间。
  *         </li>
  *     </ul>
- * </p>
  *
  * @see NonNullSupport
  */

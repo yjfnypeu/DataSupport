@@ -36,7 +36,6 @@ import java.lang.reflect.Field;
  *     <ul>
  *         <li>检查器：对成员变量的数据进行非空判断.</li>
  *     </ul>
- * </p>
  *
  * @see NonNullSupport
  */

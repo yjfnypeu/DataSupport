@@ -36,28 +36,30 @@ import java.lang.reflect.Field;
  *     // 对于一个类A：
  *     class A {
  *         // 指定此成员变量将使用其自身的规则进行模拟/检查
- *         &#64Requires
+ *         &#64;Requires
  *         B b;
  *     }
  *
  *     class B {
- *         &#64Name
+ *         &#64;Name
  *         String name;
  *     }
  * </pre>
  *
- * <p><b>请注意：由于此种规则。有发生循环依赖的危险。所以请在规则定制时. 避免出现循环依赖的情况。如下面这种情况：
+ * <p>请注意：由于此种规则。有发生循环依赖的危险。所以请在规则定制时. 避免出现循环依赖的情况。如下面这种情况:
+ *
+ * 将会抛出RuntimeException:Find an unsupported cyclic dependency links ...
  *
  * <pre>
  *     // A 依赖 B中规则
  *     class A {
- *         &#64Requires
- *         String name;
+ *         &#64;Requires
+ *         B b;
  *     }
  *
  *     // B 依赖 A中规则。
  *     class B {
- *         &#64Requires
+ *         &#64;Requires
  *         A a;
  *     }
  * </pre>

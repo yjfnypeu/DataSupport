@@ -36,7 +36,7 @@ import java.lang.annotation.Target;
  * <pre class="prettyprint">
  *     class User {
  *         // 代表此成员变量将使用RangeInt所提供的检查器对name变量的数据进行检查。
- *         &#64RangeInt(min = 1, max = 11);
+ *         &#64;RangeInt(min = 1, max = 11);
  *         String name;
  *     }
  * </pre>
@@ -48,8 +48,8 @@ import java.lang.annotation.Target;
  * <pre>
  *     class User {
  *         // 表示此成员变量将使用此处所特别重置过的检查器对name变量进行数据检查
- *         &#64Checker(NameChecker.class)
- *         &#64RangeInt(min = 1, max = 11);
+ *         &#64;Checker(NameChecker.class)
+ *         &#64;RangeInt(min = 1, max = 11);
  *         String name;
  *     }
  * </pre>
