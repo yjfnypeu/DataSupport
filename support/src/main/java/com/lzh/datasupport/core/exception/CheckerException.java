@@ -2,6 +2,9 @@ package com.lzh.datasupport.core.exception;
 
 import java.lang.annotation.Annotation;
 
+/**
+ * 框架所特意提取出来的定制异常
+ */
 public class CheckerException extends RuntimeException{
 
     private Object entity;

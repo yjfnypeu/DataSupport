@@ -21,6 +21,6 @@ android {
 
 def Support_Version = '0.3'
 dependencies {
-//    compile project(':support')
-    compile "com.github.yjfnypeu:DataSupport:$Support_Version"
+    compile project(':support')
+//    compile "com.github.yjfnypeu:DataSupport:$Support_Version"
 }

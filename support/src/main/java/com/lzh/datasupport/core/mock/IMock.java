@@ -18,13 +18,20 @@ package com.lzh.datasupport.core.mock;
 import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
-public interface IMock<T,A extends Annotation> {
+/**
+ * 数据模拟器接口。可通过实现此接口来定制各自的数据模拟逻辑。
+ * @param <T> 需要被模拟的数据类型
+ * @param <A> 所使用的规则注解
+ *
+ * @author haoge
+ */
+public interface IMock<T, A extends Annotation> {
 
     /**
-     * To mock an actual data with the rule and the field.
-     * @param rule The rule
-     * @param field The field that be annotated.
-     * @return mock data
+     * 对指定成员变量字段field使用规则注解rule进行数据模拟创建，并将模拟后的数据返回。由框架将其设置到对应的field之上！
+     * @param rule 使用的规则注解
+     * @param field 被该规则注解rule所注释了的成员变量字段。
+     * @return 被模拟创建的数据
      * @throws Exception Any Exception
      */
     T mock(A rule, Field field) throws Exception;

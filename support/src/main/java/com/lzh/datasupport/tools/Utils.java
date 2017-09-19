@@ -55,12 +55,18 @@ public class Utils {
                 Cache.findOrCreateMappingList(field.getType(), cyclic);
             }
         }
-        if (!isSystemClass(entity.getSuperclass())) {
-            list.addAll(Cache.findOrCreateMappingList(entity.getSuperclass()));
+        Class superclass = entity.getSuperclass();
+        if (!isSystemClass(superclass)) {
+            list.addAll(Cache.findOrCreateMappingList(superclass));
         }
         return list;
     }
 
+    /**
+     * 解析出该成员变量的有效数据信息
+     * @param field 被解析的成员变量字段
+     * @return 解析出的有效信息。或者当此字段没有设置任何的规则时：返回null
+     */
     private static Mapping findValidator(Field field) {
         Annotation[] annotations = field.getAnnotations();
         for (Annotation annotation : annotations) {

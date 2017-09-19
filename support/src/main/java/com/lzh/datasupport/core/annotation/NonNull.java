@@ -17,25 +17,30 @@ package com.lzh.datasupport.core.annotation;
 
 import com.lzh.datasupport.core.support.NonNullSupport;
 
+import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.Field;
 
 /**
- * <i><b>Rule Annotation</b></i>
+ * <p>默认提供的规则注解</p>
  *
- * <p>To indicate that the field that is annotated should not be null.</p>
+ * <p>
+ *     <b>此注解可被用于任意数据类型的成员变量之上!</b>
+ * </p>
  *
- * <ul>
- *     <li>checker: {@link NonNullSupport}</li>
- *     <li>mocker: {@link NonNullSupport}</li>
- * </ul>
+ * <p>
+ *     此规则注解只提供了检查器供使用：
+ *     <ul>
+ *         <li>检查器：对成员变量的数据进行非空判断.</li>
+ *     </ul>
+ * </p>
  *
  * @see NonNullSupport
  */
 @Checker(NonNullSupport.class)
-@Mocker(NonNullSupport.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
 public @interface NonNull {}

@@ -17,14 +17,21 @@ package com.lzh.datasupport.core.check;
 
 import java.lang.annotation.Annotation;
 
+/**
+ * 数据检查器接口。可通过实现此接口来定制各自的检查逻辑。
+ * @param <T> 需要被检查的数据类型
+ * @param <A> 所使用的规则注解
+ *
+ * @author haoge
+ */
 public interface ICheck<T, A extends Annotation> {
 
     /**
-     * To checkout if the data is matching with rule.
-     * @param t The data
-     * @param rule The rule
-     * @return True if it successfully.
-     * @throws Exception Any Exceptions
+     * 对数据实体类data使用指定规则rule进行数据检查。若检查通过。则返回true
+     * @param data 数据实体类
+     * @param rule 使用的规则注解
+     * @return True代表检查成功
+     * @throws Exception 检查中若发生异常。将会被向上抛出
      */
-    boolean check(T t, A rule) throws Exception;
+    boolean check(T data, A rule) throws Exception;
 }

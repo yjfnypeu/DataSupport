@@ -15,24 +15,31 @@
  */
 package com.lzh.datasupport.core.annotation;
 
+import com.lzh.datasupport.core.support.NonNullSupport;
 import com.lzh.datasupport.core.support.RangeIntSupport;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
+import java.lang.reflect.Field;
 
 /**
- * <i><b>Rule Annotation</b></i>
+ * <p>默认提供的规则注解. 请注意此注解只能被使用与数据类型为int的成员变量之上</p>
  *
- * <p>Limit the range of integers</p>
+ * <p>
+ *     此规则注解提供了模拟器和检查器以供直接使用：
+ *     <ul>
+ *         <li>
+ *             模拟器：创建一个数据在[min, max]之间的int数据
+ *         </li>
+ *         <li>
+ *             检查器：检查int数据值是否在[min, max]之间。
+ *         </li>
+ *     </ul>
+ * </p>
  *
- * <ul>
- *     <li>checker: {@link RangeIntSupport}</li>
- *     <li>mock: {@link RangeIntSupport}</li>
- * </ul>
- *
- * @see RangeIntSupport
+ * @see NonNullSupport
  */
 @Checker(RangeIntSupport.class)
 @Mocker(RangeIntSupport.class)

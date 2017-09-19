@@ -26,7 +26,7 @@ import java.util.List;
 import java.util.Map;
 
 /**
- * The class to manage the cache.
+ * 数据缓存管理器
  *
  * @author haoge
  */
