@@ -22,7 +22,6 @@ import java.util.List;
 
 final class DataMocker {
 
-
     public static <T> T mock(Class<T> clz) throws Exception{
         List<Mapping> mappings = Cache.findOrCreateMappingList(clz);
         return mockInternal(clz, mappings);

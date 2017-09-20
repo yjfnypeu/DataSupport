@@ -19,8 +19,10 @@ android {
     }
 }
 
-def Support_Version = '156420c7f1'
+def Support_Version = '-SNAPSHOT'
 dependencies {
     compile project(':support')
 //    compile "com.github.yjfnypeu:DataSupport:$Support_Version"
+
+    compile "com.github.yjfnypeu.Parceler:api:1.2"
 }

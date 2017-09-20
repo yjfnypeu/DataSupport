@@ -15,6 +15,7 @@
  */
 package com.lzh.datasupport;
 
+import com.lzh.datasupport.core.exception.CheckerException;
 import com.lzh.datasupport.tools.Utils;
 
 /**
@@ -35,7 +36,7 @@ public final class DataSupport {
      * 获取一个默认的DataSupport实例。此实例全局只有唯一一个。
      * @return 默认创建的实例。
      */
-    private static DataSupport getDefault() {
+    public static DataSupport getDefault() {
         if (DEFAULT == null) {
             synchronized (DataSupport.class) {
                 if (DEFAULT == null) {
@@ -120,7 +121,7 @@ public final class DataSupport {
             }
         } catch (Exception e) {
             if (throwable) {
-                throw new RuntimeException("DataSupport checked failed", e);
+                throw new RuntimeException("DataSupport check failed", e);
             }
             Utils.logException(e);
             return false;

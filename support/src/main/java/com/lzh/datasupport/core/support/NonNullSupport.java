@@ -21,15 +21,16 @@ import com.lzh.datasupport.core.mock.IMock;
 
 import java.lang.reflect.Field;
 
-public class NonNullSupport implements ICheck<Object, NonNull>, IMock<Object, NonNull> {
-
-    @Override
-    public Object mock(NonNull rule, Field field) throws Exception {
-        return field.getType().newInstance();
-    }
+public class NonNullSupport implements ICheck<Object, NonNull>{
 
     @Override
     public boolean check(Object o, NonNull rule) throws Exception {
-        return o != null;
+        if (o == null) {
+            return false;
+        } else if (o instanceof CharSequence) {
+            return ((CharSequence) o).length() != 0;
+        } else {
+            return true;
+        }
     }
 }

@@ -29,7 +29,6 @@ import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Collections;
 import java.util.List;
-import java.util.Objects;
 
 public class Utils {
 
@@ -64,6 +63,7 @@ public class Utils {
 
     /**
      * 解析出该成员变量的有效数据信息
+     *
      * @param field 被解析的成员变量字段
      * @return 解析出的有效信息。或者当此字段没有设置任何的规则时：返回null
      */
@@ -76,6 +76,7 @@ public class Utils {
             mapping.field.setAccessible(true);
             mapping.annotation = annotation;
             boolean valid = false;
+
             if (type.isAnnotationPresent(Mocker.class)) {
                 valid = true;
                 Mocker mocker = type.getAnnotation(Mocker.class);

@@ -37,11 +37,14 @@ final class DataChecker {
                 if (check == null) {
                     continue;
                 }
-                Object value = mapping.field.get(entity);
-                if (!check.check(value, mapping.annotation)) {
-                    String msg = String.format("Check for filed [%s] failed by Checker [%s]. and it value is [%s]",
-                            mapping.field, check.getClass().getCanonicalName(), value);
-                    throw new CheckerException(msg, entity, value, mapping.annotation);
+                Object value = null;
+                try {
+                    value = mapping.field.get(entity);
+                    if (!check.check(value, mapping.annotation)) {
+                        throw new CheckerException().set(value, check, mapping.field);
+                    }
+                } catch (Throwable e) {
+                    throw new CheckerException(e).set(value, check, mapping.field);
                 }
             }
         }

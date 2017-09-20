@@ -15,14 +15,15 @@
  */
 package com.lzh.datasupport.core.annotation;
 
+import com.lzh.datasupport.core.check.ICheck;
 import com.lzh.datasupport.core.support.NonNullSupport;
 import com.lzh.datasupport.core.support.RequiresSupport;
 
+import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.reflect.Field;
 
 /**
  * <p>默认提供的规则注解，此注解可被作用于任意类型的成员变量之上</p>
@@ -70,4 +71,11 @@ import java.lang.reflect.Field;
 @Mocker(RequiresSupport.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface Requires {}
+public @interface Requires {
+
+    /**
+     * 指定是否在进行检查的时候。允许当值为null的时候通过。
+     * @return true代表允许此被注解的字段的值为null。
+     */
+    boolean nullable() default false;
+}

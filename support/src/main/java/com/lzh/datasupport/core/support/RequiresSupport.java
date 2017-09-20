@@ -19,17 +19,27 @@ import com.lzh.datasupport.DataSupport;
 import com.lzh.datasupport.core.annotation.Requires;
 import com.lzh.datasupport.core.check.ICheck;
 import com.lzh.datasupport.core.mock.IMock;
+import com.lzh.datasupport.tools.Cache;
+import com.lzh.datasupport.tools.Utils;
 
+import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
 public class RequiresSupport implements ICheck<Object, Requires>, IMock<Object, Requires>{
+
+    // 创建一个此环境默认使用的Support实例。
+    private static DataSupport support = DataSupport.create().throwable(true);
+
     @Override
     public boolean check(Object o, Requires rule) throws Exception {
-        return DataSupport.create().throwable(true).check(o);
+        if (o == null && rule.nullable()) {
+            return true;
+        }
+        return support.check(o);
     }
 
     @Override
     public Object mock(Requires rule, Field field) throws Exception {
-        return DataSupport.create().throwable(true).mock(field.getType());
+        return support.mock(field.getType());
     }
 }
