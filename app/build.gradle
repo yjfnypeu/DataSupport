@@ -24,5 +24,8 @@ dependencies {
     compile project(':support')
 //    compile "com.github.yjfnypeu:DataSupport:$Support_Version"
 
+    annotationProcessor "com.github.yjfnypeu.Parceler:compiler:1.2"
     compile "com.github.yjfnypeu.Parceler:api:1.2"
+    compile "com.alibaba:fastjson:1.2.31"
+
 }

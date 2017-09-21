@@ -15,8 +15,6 @@
  */
 package com.lzh.datasupport;
 
-import com.lzh.datasupport.core.exception.CheckerException;
-import com.lzh.datasupport.tools.Utils;
 
 /**
  * <b>DataSupport</b> 框架入口类。
@@ -65,8 +63,6 @@ public final class DataSupport {
         this.throwable = throwable;
         return this;
     }
-
-
 
     /**
      * 是否激活检查器。
@@ -121,9 +117,9 @@ public final class DataSupport {
             }
         } catch (Exception e) {
             if (throwable) {
-                throw new RuntimeException("DataSupport check failed", e);
+                throw new RuntimeException("Check with DataSupport failed:", e);
             }
-            Utils.logException(e);
+            e.printStackTrace();
             return false;
         }
     }
@@ -162,9 +158,9 @@ public final class DataSupport {
             }
         } catch (Exception e) {
             if (throwable) {
-                throw new RuntimeException("DataSupport mocked failed", e);
+                throw new RuntimeException("Mock with DataSupport failed:", e);
             }
-            Utils.logException(e);
+            e.printStackTrace();
             return null;
         }
     }

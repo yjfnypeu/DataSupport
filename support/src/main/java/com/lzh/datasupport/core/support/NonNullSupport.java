@@ -15,16 +15,14 @@
  */
 package com.lzh.datasupport.core.support;
 
-import com.lzh.datasupport.core.annotation.NonNull;
 import com.lzh.datasupport.core.check.ICheck;
-import com.lzh.datasupport.core.mock.IMock;
 
-import java.lang.reflect.Field;
+import java.lang.annotation.Annotation;
 
-public class NonNullSupport implements ICheck<Object, NonNull>{
+public class NonNullSupport implements ICheck<Object, Annotation>{
 
     @Override
-    public boolean check(Object o, NonNull rule) throws Exception {
+    public boolean check(Object o, Annotation rule) throws Exception {
         if (o == null) {
             return false;
         } else if (o instanceof CharSequence) {

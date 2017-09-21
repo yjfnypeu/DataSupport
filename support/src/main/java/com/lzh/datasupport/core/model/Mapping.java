@@ -22,8 +22,8 @@ import java.lang.annotation.Annotation;
 import java.lang.reflect.Field;
 
 public class Mapping {
-    public IMock mock;
-    public ICheck[] checks;
+    public Class<? extends IMock> mock;
+    public Class<? extends ICheck>[] checks;
     public Annotation annotation;
     public Field field;
 }

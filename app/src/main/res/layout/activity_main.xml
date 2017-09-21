@@ -20,5 +20,11 @@
         android:onClick="onClickValidParams"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
+    <Button
+        android:id="@+id/toCheckWithMockParams"
+        android:text="传递模拟数据到检查页"
+        android:onClick="onClickMockParams"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

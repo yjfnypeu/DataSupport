@@ -15,13 +15,9 @@
  */
 package com.lzh.datasupport.tools;
 
-import android.util.Log;
-
 import com.lzh.datasupport.core.annotation.Checker;
 import com.lzh.datasupport.core.annotation.Mocker;
 import com.lzh.datasupport.core.annotation.Requires;
-import com.lzh.datasupport.core.check.ICheck;
-import com.lzh.datasupport.core.mock.IMock;
 import com.lzh.datasupport.core.model.Mapping;
 
 import java.lang.annotation.Annotation;
@@ -32,7 +28,6 @@ import java.util.List;
 
 public class Utils {
 
-    private static boolean inAndroid;
     private final static String[] SYSTEM_PREFIX = {"java", "android", "javax", "com.android"};
 
     static List<Mapping> parse(Class entity, ArrayList<Class> cyclic) {
@@ -80,24 +75,22 @@ public class Utils {
             if (type.isAnnotationPresent(Mocker.class)) {
                 valid = true;
                 Mocker mocker = type.getAnnotation(Mocker.class);
-                Class<? extends IMock> value = mocker.value();
-                mapping.mock = Cache.findOrCreateMocker(value);
+                mapping.mock = mocker.value();
             }
             if (type.isAnnotationPresent(Checker.class)) {
                 valid = true;
                 Checker checker = type.getAnnotation(Checker.class);
-                Class<? extends ICheck>[] values = checker.value();
-                mapping.checks = Cache.findOrCreateChecker(values);
+                mapping.checks = checker.value();
             }
 
             if (valid) {
                 Checker checker = field.getAnnotation(Checker.class);
                 Mocker mocker = field.getAnnotation(Mocker.class);
                 if (checker != null) {
-                    mapping.checks = Cache.findOrCreateChecker(checker.value());
+                    mapping.checks = checker.value();
                 }
                 if (mocker != null) {
-                    mapping.mock = Cache.findOrCreateMocker(mocker.value());
+                    mapping.mock = mocker.value();
                 }
                 return mapping;
             }
@@ -113,28 +106,5 @@ public class Utils {
             }
         }
         return false;
-    }
-
-    public static void logException(Throwable e) {
-        StringBuilder builder = new StringBuilder();
-        while (e != null) {
-            builder.append(e.getMessage()).append("\r\n");
-            e = e.getCause();
-        }
-
-        if (inAndroid) {
-            Log.e("DataSupport", builder.toString());
-        } else {
-            System.err.println(builder.toString());
-        }
-    }
-
-    static {
-        try {
-            Class.forName("android.app.Activity");
-            inAndroid = true;
-        } catch (ClassNotFoundException e) {
-            inAndroid = false;
-        }
     }
 }

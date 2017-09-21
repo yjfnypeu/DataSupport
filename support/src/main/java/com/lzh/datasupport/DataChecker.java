@@ -16,7 +16,6 @@
 package com.lzh.datasupport;
 
 import com.lzh.datasupport.core.check.ICheck;
-import com.lzh.datasupport.core.exception.CheckerException;
 import com.lzh.datasupport.core.model.Mapping;
 import com.lzh.datasupport.tools.Cache;
 
@@ -24,30 +23,33 @@ import java.util.List;
 
 final class DataChecker {
 
-    static boolean check(Object data) throws Exception{
+    static boolean check(Object data) throws Exception {
         List<Mapping> mappings = Cache.findOrCreateMappingList(data.getClass());
         return checkInternal(data, mappings);
     }
 
     @SuppressWarnings("unchecked")
     private static boolean checkInternal(Object entity, List<Mapping> mappings) throws Exception {
-        for (Mapping mapping : mappings) {
-            ICheck[] checks = mapping.checks;
-            for (ICheck check : checks) {
+        for (int i = 0; i < (mappings == null ? 0 : mappings.size()); i++) {
+            Mapping mapping = mappings.get(i);
+            if (mapping == null) {
+                continue;
+            }
+
+            Class<? extends ICheck>[] checks = mapping.checks;
+            for (int j = 0; j < (checks == null ? 0 : checks.length); j++) {
+                Class<? extends ICheck> check = checks[j];
                 if (check == null) {
                     continue;
                 }
-                Object value = null;
-                try {
-                    value = mapping.field.get(entity);
-                    if (!check.check(value, mapping.annotation)) {
-                        throw new CheckerException().set(value, check, mapping.field);
-                    }
-                } catch (Throwable e) {
-                    throw new CheckerException(e).set(value, check, mapping.field);
+
+                Object value = mapping.field.get(entity);
+                if (!Cache.findOrCreateChecker(check).check(value, mapping.annotation)) {
+                    throw new RuntimeException(String.format("Check failed for Field:[%s]: checker => %s & value => %s", mapping.field, check, value));
                 }
             }
         }
         return true;
     }
+
 }

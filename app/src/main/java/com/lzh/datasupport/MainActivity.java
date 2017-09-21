@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.lzh.compiler.parceler.Parceler;
 import com.lzh.datasupport.pojo.UserInfo;
 
 public class MainActivity extends Activity {
@@ -24,6 +25,17 @@ public class MainActivity extends Activity {
     public void onClickValidParams(View view) {
         Intent intent = new Intent(this, CheckActivity.class);
         intent.putExtra("name", "haoge");
+        startActivity(intent);
+    }
+
+    public void onClickMockParams(View view) {
+        Intent intent = new Intent(this, CheckActivity.class);
+        UserInfo info = DataSupport.getDefault().throwable(false).mock(UserInfo.class);
+        Bundle bundle = Parceler.createFactory(new Bundle())
+                .put("info", info)
+                .put("name", info.username)
+                .getBundle();
+        intent.putExtras(bundle);
         startActivity(intent);
     }
 }

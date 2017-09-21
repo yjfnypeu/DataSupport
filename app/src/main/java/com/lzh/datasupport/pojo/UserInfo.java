@@ -9,11 +9,11 @@ import com.lzh.datasupport.mocker.NameMocker;
 public class UserInfo{
 
     @RangeInt(min = 0, max = 100)
-    int age;
+    public int age;
 
     @Mocker(NameMocker.class)// 对username设置模拟规则。
     @RangeSize(3)
-    String username;
+    public String username;
 
     @Override
     public String toString() {
@@ -22,4 +22,6 @@ public class UserInfo{
                 ", username='" + username + '\'' +
                 '}';
     }
+
+
 }

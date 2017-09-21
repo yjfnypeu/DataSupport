@@ -5,6 +5,13 @@
 
     <TextView
         android:id="@+id/name"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:id="@+id/info"
+        android:padding="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
