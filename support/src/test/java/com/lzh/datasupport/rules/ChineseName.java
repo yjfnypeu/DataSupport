@@ -1,4 +1,4 @@
-package com.lzh.datasupport.mocker;
+package com.lzh.datasupport.rules;
 
 import com.lzh.datasupport.core.annotation.Checker;
 import com.lzh.datasupport.core.annotation.Mocker;

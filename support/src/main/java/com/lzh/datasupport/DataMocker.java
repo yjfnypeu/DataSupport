@@ -34,7 +34,8 @@ final class DataMocker {
             if (mapping.mock == null) {
                 continue;
             }
-            Object subValue = Cache.findOrCreateMocker(mapping.mock).mock(mapping.annotation, mapping.field);
+
+            Object subValue = Cache.findOrCreateMocker(mapping.mock.mock).mock(mapping.mock.annotation, mapping.field);
             mapping.field.set(mock, subValue);
         }
         return mock;

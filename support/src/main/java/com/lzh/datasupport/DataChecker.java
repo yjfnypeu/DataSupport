@@ -16,9 +16,11 @@
 package com.lzh.datasupport;
 
 import com.lzh.datasupport.core.check.ICheck;
+import com.lzh.datasupport.core.model.CheckerMapping;
 import com.lzh.datasupport.core.model.Mapping;
 import com.lzh.datasupport.tools.Cache;
 
+import java.lang.annotation.Annotation;
 import java.util.List;
 
 final class DataChecker {
@@ -32,24 +34,40 @@ final class DataChecker {
     private static boolean checkInternal(Object entity, List<Mapping> mappings) throws Exception {
         for (int i = 0; i < (mappings == null ? 0 : mappings.size()); i++) {
             Mapping mapping = mappings.get(i);
+            if (mapping == null || mapping.checks == null) {
+                continue;
+            }
+
+            try {
+                flatCheckMappings(mapping.field.get(entity), mapping.checks);
+            } catch (Exception e) {
+                throw new RuntimeException(String.format("Check for class [%s] with it field member [%s] failed",
+                        mapping.field.getDeclaringClass(), mapping.field.getName()), e);
+            }
+        }
+        return true;
+    }
+
+    private static void flatCheckMappings(Object value, CheckerMapping[] checks) throws Exception {
+        for (CheckerMapping mapping : checks) {
             if (mapping == null) {
                 continue;
             }
 
-            Class<? extends ICheck>[] checks = mapping.checks;
-            for (int j = 0; j < (checks == null ? 0 : checks.length); j++) {
-                Class<? extends ICheck> check = checks[j];
-                if (check == null) {
-                    continue;
-                }
+            flatCheckMapping(value, mapping);
+        }
+    }
 
-                Object value = mapping.field.get(entity);
-                if (!Cache.findOrCreateChecker(check).check(value, mapping.annotation)) {
-                    throw new RuntimeException(String.format("Check failed for Field:[%s]: checker => %s & value => %s", mapping.field, check, value));
-                }
+    private static void flatCheckMapping(Object value, CheckerMapping mapping) throws Exception {
+        ICheck[] checks = Cache.findOrCreateChecker(mapping.checks);
+        Annotation annotation = mapping.annotation;
+
+        for (ICheck check : checks) {
+            //noinspection unchecked
+            if (!check.check(value, annotation)) {
+                throw new RuntimeException(String.format("Check by %s with value %s", check.getClass(), value));
             }
         }
-        return true;
     }
 
 }

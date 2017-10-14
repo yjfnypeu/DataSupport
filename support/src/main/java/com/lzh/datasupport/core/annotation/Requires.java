@@ -15,11 +15,9 @@
  */
 package com.lzh.datasupport.core.annotation;
 
-import com.lzh.datasupport.core.check.ICheck;
 import com.lzh.datasupport.core.support.NonNullSupport;
 import com.lzh.datasupport.core.support.RequiresSupport;
 
-import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -48,8 +46,6 @@ import java.lang.annotation.Target;
  * </pre>
  *
  * <p>请注意：由于此种规则。有发生循环依赖的危险。所以请在规则定制时. 避免出现循环依赖的情况。如下面这种情况:
- *
- * 将会抛出RuntimeException:Find an unsupported cyclic dependency links ...
  *
  * <pre>
  *     // A 依赖 B中规则

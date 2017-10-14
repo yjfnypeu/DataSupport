@@ -15,10 +15,11 @@
  */
 package com.lzh.datasupport.core.model;
 
-import java.lang.reflect.Field;
+import com.lzh.datasupport.core.mock.IMock;
 
-public class Mapping {
-    public MockerMapping mock;
-    public CheckerMapping[] checks;
-    public Field field;
+import java.lang.annotation.Annotation;
+
+public class MockerMapping {
+    public Class<? extends IMock> mock;
+    public Annotation annotation;
 }

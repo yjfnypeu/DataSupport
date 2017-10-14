@@ -21,6 +21,7 @@ package com.lzh.datasupport;
  *
  * @author haoge
  */
+@SuppressWarnings({"unused", "WeakerAccess"})
 public final class DataSupport {
 
     // 默认使用的Support实例
@@ -95,26 +96,27 @@ public final class DataSupport {
      * <p>需要注意的几点：
      *     <ul>
      *         <li>
-     *             当你在调用此方法前，若通过{@link #enableCheck(boolean)}指定为false时。将不会触发内部检查操作。而直接只进行实体类是否为null的判断
+     *             当你在调用此方法前，若通过{@link #enableCheck(boolean)}指定为false时。将不会触发内部检查操作。而直接返回true
      *         </li>
      *         <li>
      *             当触发检查操作后。若内部有检查操作出现异常。将会根据你之前使用{@link #throwable(boolean)}所指定的是否抛出异常来做过滤。
      *             当指定为false时，则不会抛出异常。
      *         </li>
      *     </ul>
-     *
-     * @param entity 需要进行检查的实体类。
+     * @param entity 需要进行检查的实体类。non-null
      * @return True代表检查成功。
      * @see #enableCheck(boolean)
      * @see #throwable(boolean)
      */
     public boolean check(Object entity) {
         try {
+            if (entity == null) {
+                throw new RuntimeException("This entity to be checked is null");
+            }
             if (enableCheck) {
                 return DataChecker.check(entity);
-            } else {
-                return entity != null;
             }
+            return true;
         } catch (Exception e) {
             if (throwable) {
                 throw new RuntimeException("Check with DataSupport failed:", e);

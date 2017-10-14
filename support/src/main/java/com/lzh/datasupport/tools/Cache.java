@@ -32,25 +32,16 @@ import java.util.Map;
  */
 public final class Cache {
 
-    private final static List EMPTY = Collections.EMPTY_LIST;
     private final static Map<Class, List<Mapping>> RULES_MAPPING = new HashMap<>();
     private final static Map<Class, IMock> MOCKS = new HashMap<>();
     private final static Map<Class, ICheck> CHECKS = new HashMap<>();
 
     public static List<Mapping> findOrCreateMappingList(Class entity) {
-        return findOrCreateMappingList(entity, new ArrayList<Class>());
-    }
-
-    static List<Mapping> findOrCreateMappingList(Class entity, ArrayList<Class> cyclic) {
-        cyclic.add(entity);
         List<Mapping> list = RULES_MAPPING.get(entity);
         if (list == null) {
             //noinspection unchecked
-            RULES_MAPPING.put(entity, EMPTY);
-            list = Utils.parse(entity, cyclic);
+            list = Utils.parse(entity);
             RULES_MAPPING.put(entity, list);
-        } else if (list == EMPTY) {
-            throw new RuntimeException(String.format("Find an unsupported cyclic dependency links %s", cyclic));
         }
         return list;
     }
