@@ -27,6 +27,10 @@ maven { url 'https://jitpack.io' }
 compile "com.github.yjfnypeu:DataSupport:$lastestVersion"
 ```
 
+### 更新日志
+
+[releases page](https://github.com/yjfnypeu/DataSupport/releases)
+
 ### 用法
 
 [请参考wiki](https://github.com/yjfnypeu/DataSupport/wiki)
