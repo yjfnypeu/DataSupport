@@ -7,20 +7,20 @@ import android.widget.Toast;
 
 import com.lzh.compiler.parceler.Parceler;
 import com.lzh.compiler.parceler.annotation.Arg;
-import com.lzh.datasupport.core.annotation.NonNull;
-import com.lzh.datasupport.core.annotation.Requires;
+import com.lzh.datasupport.support.rules.NonNull;
+import com.lzh.datasupport.support.rules.Requires;
 import com.lzh.datasupport.pojo.UserInfo;
 
 public class CheckActivity extends Activity {
 
     // 指定要求执行此类型的内部检查规则,指定nullable为true。代表当此变量的值为null时，将跳过此类型的内部检查规则。
-    @Arg
     @Requires(nullable = true)
+    @Arg
     UserInfo info;
 
     // 指定此字段不能为null。
-    @Arg
     @NonNull
+    @Arg
     String name;
 
     @Override

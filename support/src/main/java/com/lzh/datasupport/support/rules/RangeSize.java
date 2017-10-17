@@ -13,45 +13,38 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lzh.datasupport.core.annotation;
+package com.lzh.datasupport.support.rules;
 
-import com.lzh.datasupport.core.support.NonNullSupport;
-import com.lzh.datasupport.core.support.RangeIntSupport;
+import com.lzh.datasupport.core.annotation.Checker;
+import com.lzh.datasupport.support.impl.NonNullSupport;
+import com.lzh.datasupport.support.impl.RangeSizeSupport;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.reflect.Field;
+import java.util.List;
+import java.util.Map;
 
 /**
- * <p>默认提供的规则注解. 请注意此注解只能被使用与数据类型为int的成员变量之上</p>
+ * <p>默认提供的规则注解, 请注意此注解只能被使用于数据类型为[{@link CharSequence}, {@link java.util.Map}, {@link java.util.Collection}]的成员变量之上</p>
  *
  * <p>
- *     此规则注解提供了模拟器和检查器以供直接使用：
+ *     此规则注解只提供了检查器进行使用：
  *     <ul>
  *         <li>
- *             模拟器：创建一个数据在[min, max]之间的int数据
- *         </li>
- *         <li>
- *             检查器：检查int数据值是否在[min, max]之间。
+ *             检查器: 检查数据的值的长度是否在指定范围之内:<br>
+ *             1. {@link CharSequence}判断其{@link CharSequence#length()}<br>
+ *             2. {@link Map}判断其{@link Map#size()}<br>
+ *             3. {@link List}判断其{@link List#size()}
  *         </li>
  *     </ul>
  *
  * @see NonNullSupport
  */
-@Checker(RangeIntSupport.class)
-@Mocker(RangeIntSupport.class)
+@Checker(RangeSizeSupport.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface RangeInt {
-    /**
-     * @return The min value.
-     */
-    int min();
-
-    /**
-     * @return The max value.
-     */
-    int max();
+public @interface RangeSize {
+    int value() default 0;
 }

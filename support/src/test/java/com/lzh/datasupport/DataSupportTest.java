@@ -1,7 +1,6 @@
 package com.lzh.datasupport;
 
-import com.lzh.datasupport.core.annotation.NonNull;
-import com.lzh.datasupport.core.annotation.Requires;
+import com.lzh.datasupport.support.rules.NonNull;
 import com.lzh.datasupport.rules.ChineseName;
 
 

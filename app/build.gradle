@@ -17,9 +17,12 @@ android {
             proguardFiles getDefaultProguardFile('proguard-android.txt'), 'proguard-rules.pro'
         }
     }
+    lintOptions {
+        abortOnError false
+    }
 }
 
-def Support_Version = '0.3'
+def Support_Version = '9bb5323794'
 dependencies {
     compile project(':support')
 //    compile "com.github.yjfnypeu:DataSupport:$Support_Version"

@@ -16,6 +16,7 @@
 package com.lzh.datasupport.core.annotation;
 
 import com.lzh.datasupport.core.mock.IMock;
+import com.lzh.datasupport.support.rules.RangeInt;
 
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
@@ -25,12 +26,10 @@ import java.lang.annotation.Target;
 /**
  * <p>此注解用于配置<b>模拟器{@link IMock}</b>提供使用，是框架内部的<b>基础规则注解</b></p>
  *
- * <p>
- *     此模拟器配置注解。有两种配置使用方式：
- * </p>
+ * <p>被此注解所注释的规则注解。被称为 <i><b>模拟器规则注解</b></i>
  *
  * <p>
- *     1. 作用于定制的规则注解之上，如{@link RangeInt}, 作用为：对于使用了此注解的成员变量。将会使用此注解上所配置的模拟器器进行数据模拟：
+ *     作用于定制的规则注解之上，如{@link RangeInt}。 作用为：对于使用了此注解的成员变量。将会使用此注解上所配置的模拟器器进行数据模拟：
  * </p>
  *
  * <pre class="prettyprint">
@@ -40,26 +39,8 @@ import java.lang.annotation.Target;
  *         String name;
  *     }
  * </pre>
- *
- * <p>
- *     2.或者直接作用于添加了任意注解的成员变量之上，代表此成员变量将直接使用此处所单独配置的模拟器进行数据模拟操作。若添加的注解自身有配置模拟器时，将会被替换掉。
- * </p>
- *
- * <pre>
- *     class User {
- *         // 表示此成员变量将使用此处所特别重置过的检查器对name变量进行数据检查。
- *         &#64;Mocker(NameMocker.class)
- *         &#64;RangeInt(min = 1, max = 11);
- *         String name;
- *     }
- * </pre>
- *
- * <p>
- *     若对于一个变量。所使用的注解。并未通过以上两种方式的任意一种所进行模拟器配置。则代表此变量将不存在有对应的模拟器。在进行数据模拟时将被pass
- * </p>
- *
  */
-@Target({ElementType.ANNOTATION_TYPE, ElementType.FIELD})
+@Target({ElementType.ANNOTATION_TYPE})
 @Retention(RetentionPolicy.RUNTIME)
 public @interface Mocker {
     /**

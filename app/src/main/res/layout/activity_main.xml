@@ -27,4 +27,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Button
+        android:id="@+id/simple"
+        android:text="模拟并检查简单规则类"
+        android:onClick="mockAndCheckSimple"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
 </LinearLayout>

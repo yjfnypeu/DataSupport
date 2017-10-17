@@ -2,7 +2,7 @@ package com.lzh.datasupport;
 
 import com.lzh.datasupport.core.annotation.Checker;
 import com.lzh.datasupport.core.annotation.Mocker;
-import com.lzh.datasupport.core.annotation.Requires;
+import com.lzh.datasupport.support.rules.Requires;
 import com.lzh.datasupport.core.annotation.Target;
 import com.lzh.datasupport.core.model.Mapping;
 import com.lzh.datasupport.rules.ChineseName;
@@ -32,8 +32,8 @@ public class RuleParseTest {
      * checker: 所有含有{@link Checker}的规则注解
      * mocker: 由上至下遍历所有规则注解。使用最后一个有{@link Mocker}的规则注解
      */
-    @Requires
     @ChineseName
+    @Requires
     String multiple;
 
     /**
@@ -41,12 +41,12 @@ public class RuleParseTest {
      *
      * 此种方式将使用通过{@link Target}做了特殊指定的规则注解。
      */
+    @Requires
+    @ChineseName
     @Target(
             mock = Requires.class,
             checks = {ChineseName.class}
     )
-    @Requires
-    @ChineseName
     String multipleWithTarget;
 
     @Test

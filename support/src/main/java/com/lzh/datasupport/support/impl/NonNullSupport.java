@@ -13,31 +13,22 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lzh.datasupport.core.support;
+package com.lzh.datasupport.support.impl;
 
-import com.lzh.datasupport.DataSupport;
-import com.lzh.datasupport.core.annotation.Requires;
 import com.lzh.datasupport.core.check.ICheck;
-import com.lzh.datasupport.core.mock.IMock;
 
 import java.lang.annotation.Annotation;
-import java.lang.reflect.Field;
 
-public class RequiresSupport implements ICheck<Object, Requires>, IMock<Object, Annotation>{
-
-    // 创建一个此环境默认使用的Support实例。
-    private static DataSupport support = DataSupport.create().throwable(true);
+public class NonNullSupport implements ICheck<Object, Annotation>{
 
     @Override
-    public boolean check(Object o, Requires rule) throws Exception {
-        if (o == null && rule.nullable()) {
+    public boolean check(Object o, Annotation rule) throws Exception {
+        if (o == null) {
+            return false;
+        } else if (o instanceof CharSequence) {
+            return ((CharSequence) o).length() != 0;
+        } else {
             return true;
         }
-        return support.check(o);
-    }
-
-    @Override
-    public Object mock(Annotation rule, Field field) throws Exception {
-        return support.mock(field.getType());
     }
 }

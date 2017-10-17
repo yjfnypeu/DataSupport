@@ -13,9 +13,9 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lzh.datasupport.core.support;
+package com.lzh.datasupport.support.impl;
 
-import com.lzh.datasupport.core.annotation.RangeInt;
+import com.lzh.datasupport.support.rules.RangeInt;
 import com.lzh.datasupport.core.check.ICheck;
 import com.lzh.datasupport.core.mock.IMock;
 

@@ -13,33 +13,45 @@
  * See the License for the specific language governing permissions and
  * limitations under the License.
  */
-package com.lzh.datasupport.core.annotation;
+package com.lzh.datasupport.support.rules;
 
-import com.lzh.datasupport.core.support.NonNullSupport;
+import com.lzh.datasupport.core.annotation.Checker;
+import com.lzh.datasupport.core.annotation.Mocker;
+import com.lzh.datasupport.support.impl.RangeIntSupport;
 
-import java.lang.annotation.Annotation;
 import java.lang.annotation.ElementType;
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
 import java.lang.annotation.Target;
-import java.lang.reflect.Field;
 
 /**
- * <p>默认提供的规则注解</p>
+ * <p>默认提供的规则注解. 请注意此注解只能被使用与数据类型为int的成员变量之上</p>
  *
  * <p>
- *     <b>此注解可被用于任意数据类型的成员变量之上!</b>
- * </p>
- *
- * <p>
- *     此规则注解只提供了检查器供使用：
+ *     此规则注解提供了模拟器和检查器以供直接使用：
  *     <ul>
- *         <li>检查器：对成员变量的数据进行非空判断.</li>
+ *         <li>
+ *             模拟器：创建一个数据在[min, max]之间的int数据
+ *         </li>
+ *         <li>
+ *             检查器：检查int数据值是否在[min, max]之间。
+ *         </li>
  *     </ul>
  *
- * @see NonNullSupport
+ * @see RangeIntSupport
  */
-@Checker(NonNullSupport.class)
+@Checker(RangeIntSupport.class)
+@Mocker(RangeIntSupport.class)
 @Retention(RetentionPolicy.RUNTIME)
 @Target(ElementType.FIELD)
-public @interface NonNull {}
+public @interface RangeInt {
+    /**
+     * @return The min value.
+     */
+    int min();
+
+    /**
+     * @return The max value.
+     */
+    int max();
+}

@@ -148,7 +148,12 @@ class Utils {
             Annotation[] fieldAnnotations = field.getAnnotations();
             for (Annotation fieldAnnotation : fieldAnnotations) {
                 if (fieldAnnotation.annotationType().isAnnotationPresent(Mocker.class)) {
-                    annotation = fieldAnnotation;
+                    if (annotation == null) {
+                        annotation = fieldAnnotation;
+                    } else {
+                        annotation = null;
+                        break;
+                    }
                 }
             }
         }
